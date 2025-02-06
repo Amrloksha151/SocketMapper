@@ -64,9 +64,21 @@ def Scanning_GUI():
     hostEntryFrame = ttk.Frame(master=window)
     hostLabel = ttk.Label(master=hostEntryFrame, text="Host:", font="Chiller 18 bold")
     hostEntry = ttk.Entry(master=hostEntryFrame)
-    hostEntryFrame.pack()
+    hostEntryFrame.pack(pady=10)
     hostLabel.pack(side="left", padx=10)
     hostEntry.pack(side="left", padx=10)
+
+    # Ports Range
+    rangeFrame = ttk.Frame(master=window)
+    rangeLabel = ttk.Label(master=rangeFrame, text='Range:', font="Chiller 18 bold")
+    startEntry = ttk.Entry(master=rangeFrame, width=5) # add a default value
+    colon = ttk.Label(master=rangeFrame, text=':', font="Chiller 24 bold")
+    stopEntry = ttk.Entry(master=rangeFrame, width=5) # add a default value
+    rangeFrame.pack(pady=10)
+    rangeLabel.pack(side='left', padx=10)
+    startEntry.pack(side='left', padx=10)
+    colon.pack(side='left', padx=5)
+    stopEntry.pack(side='left', padx=10)
 
     # TCP or UDP
     protocolFrame = ttk.Frame(master=window)
@@ -88,7 +100,7 @@ def Scanning_GUI():
         variable=protocolVariable,
         style="Outline.Toolbutton",
     )
-    protocolFrame.pack(pady=20)
+    protocolFrame.pack(pady=10)
     protocolLabel.pack(side="left", padx=10)
     UDP_RadioButton.pack(side="left", padx=10)
     TCP_RadioButton.pack(side="left", padx=10)
