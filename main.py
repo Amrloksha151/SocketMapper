@@ -70,15 +70,15 @@ def Scanning_GUI():
 
     # Ports Range
     rangeFrame = ttk.Frame(master=window)
-    rangeLabel = ttk.Label(master=rangeFrame, text='Range:', font="Chiller 18 bold")
-    startEntry = ttk.Entry(master=rangeFrame, width=5) # add a default value
-    colon = ttk.Label(master=rangeFrame, text=':', font="Chiller 24 bold")
-    stopEntry = ttk.Entry(master=rangeFrame, width=5) # add a default value
+    rangeLabel = ttk.Label(master=rangeFrame, text="Range:", font="Chiller 18 bold")
+    startEntry = ttk.Entry(master=rangeFrame, width=5)  # add a default value
+    colon = ttk.Label(master=rangeFrame, text=":", font="Chiller 24 bold")
+    stopEntry = ttk.Entry(master=rangeFrame, width=5)  # add a default value
     rangeFrame.pack(pady=20)
-    rangeLabel.pack(side='left', padx=10)
-    startEntry.pack(side='left', padx=10)
-    colon.pack(side='left', padx=5)
-    stopEntry.pack(side='left', padx=10)
+    rangeLabel.pack(side="left", padx=10)
+    startEntry.pack(side="left", padx=10)
+    colon.pack(side="left", padx=5)
+    stopEntry.pack(side="left", padx=10)
 
     # TCP or UDP
     protocolFrame = ttk.Frame(master=window)
@@ -106,26 +106,31 @@ def Scanning_GUI():
     TCP_RadioButton.pack(side="left", padx=10)
 
     # Features
-    featuresLabel = ttk.Label(master=window, text='Features', font="Chiller 24 bold")
+    featuresLabel = ttk.Label(master=window, text="Features", font="Chiller 24 bold")
     featuresLabel.pack(pady=20)
     featuresFrame = ttk.Frame(master=window)
     featuresFrame.pack()
     # Services Scanning Feature
-    serToggle = ttk.Checkbutton(master=featuresFrame, text='Services', style='round-toggle')
-    serToggle.pack(side='left', padx=10) # Don't miss to add side='left'
+    serToggle = ttk.Checkbutton(
+        master=featuresFrame, text="Services", style="round-toggle"
+    )
+    serToggle.pack(side="left", padx=10)  # Don't miss to add side='left'
     # Multithreading
-    threadingToggle = ttk.Checkbutton(master=featuresFrame, text='Multithreading', style='round-toggle')
-    threadingToggle.pack(side='left', padx=10)
+    threadingToggle = ttk.Checkbutton(
+        master=featuresFrame, text="Multithreading", style="round-toggle"
+    )
+    threadingToggle.pack(side="left", padx=10)
     # CSV... CSVT short for Comma Seprated Values Toggle button
-    csvT = ttk.Checkbutton(master=featuresFrame, text='CSV', style='round-toggle')
-    csvT.pack(side='left', padx=10)
+    csvT = ttk.Checkbutton(master=featuresFrame, text="CSV", style="round-toggle")
+    csvT.pack(side="left", padx=10)
     # TXT
-    txt = ttk.Checkbutton(master=featuresFrame, text='TXT', style='round-toggle')
-    txt.pack(side='left', padx=10)
+    txt = ttk.Checkbutton(master=featuresFrame, text="TXT", style="round-toggle")
+    txt.pack(side="left", padx=10)
 
     # submit button
-    submitBtn = ttk.Button(master=window, text='Submit', style='outline')
+    submitBtn = ttk.Button(master=window, text="Submit", style="outline")
     submitBtn.pack(pady=40)
+
 
 def Grapping_GUI():
     clear(centralImage, btnFrame)
