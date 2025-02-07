@@ -64,7 +64,7 @@ def Scanning_GUI():
     hostEntryFrame = ttk.Frame(master=window)
     hostLabel = ttk.Label(master=hostEntryFrame, text="Host:", font="Chiller 18 bold")
     hostEntry = ttk.Entry(master=hostEntryFrame)
-    hostEntryFrame.pack(pady=10)
+    hostEntryFrame.pack(pady=20)
     hostLabel.pack(side="left", padx=10)
     hostEntry.pack(side="left", padx=10)
 
@@ -74,7 +74,7 @@ def Scanning_GUI():
     startEntry = ttk.Entry(master=rangeFrame, width=5) # add a default value
     colon = ttk.Label(master=rangeFrame, text=':', font="Chiller 24 bold")
     stopEntry = ttk.Entry(master=rangeFrame, width=5) # add a default value
-    rangeFrame.pack(pady=10)
+    rangeFrame.pack(pady=20)
     rangeLabel.pack(side='left', padx=10)
     startEntry.pack(side='left', padx=10)
     colon.pack(side='left', padx=5)
@@ -100,11 +100,32 @@ def Scanning_GUI():
         variable=protocolVariable,
         style="Outline.Toolbutton",
     )
-    protocolFrame.pack(pady=10)
+    protocolFrame.pack(pady=20)
     protocolLabel.pack(side="left", padx=10)
     UDP_RadioButton.pack(side="left", padx=10)
     TCP_RadioButton.pack(side="left", padx=10)
 
+    # Features
+    featuresLabel = ttk.Label(master=window, text='Features', font="Chiller 24 bold")
+    featuresLabel.pack(pady=20)
+    featuresFrame = ttk.Frame(master=window)
+    featuresFrame.pack()
+    # Services Scanning Feature
+    serToggle = ttk.Checkbutton(master=featuresFrame, text='Services', style='round-toggle')
+    serToggle.pack(side='left', padx=10) # Don't miss to add side='left'
+    # Multithreading
+    threadingToggle = ttk.Checkbutton(master=featuresFrame, text='Multithreading', style='round-toggle')
+    threadingToggle.pack(side='left', padx=10)
+    # CSV... CSVT short for Comma Seprated Values Toggle button
+    csvT = ttk.Checkbutton(master=featuresFrame, text='CSV', style='round-toggle')
+    csvT.pack(side='left', padx=10)
+    # TXT
+    txt = ttk.Checkbutton(master=featuresFrame, text='TXT', style='round-toggle')
+    txt.pack(side='left', padx=10)
+
+    # submit button
+    submitBtn = ttk.Button(master=window, text='Submit', style='outline')
+    submitBtn.pack(pady=40)
 
 def Grapping_GUI():
     clear(centralImage, btnFrame)
