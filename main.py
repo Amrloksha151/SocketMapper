@@ -110,11 +110,6 @@ def Scanning_GUI():
     featuresLabel.pack(pady=20)
     featuresFrame = ttk.Frame(master=window)
     featuresFrame.pack()
-    # Services Scanning Feature
-    serToggle = ttk.Checkbutton(
-        master=featuresFrame, text="Services", style="round-toggle"
-    )
-    serToggle.pack(side="left", padx=10)  # Don't miss to add side='left'
     # Multithreading
     threadingToggle = ttk.Checkbutton(
         master=featuresFrame, text="Multithreading", style="round-toggle"
