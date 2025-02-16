@@ -1,6 +1,6 @@
 import tkinter as tk  # if not used delete it while finalizing
 import ttkbootstrap as ttk
-
+from port_scanning import Scanning
 
 def main():
     global window
@@ -63,7 +63,8 @@ def Scanning_GUI():
     # Host address or domain input box
     hostEntryFrame = ttk.Frame(master=window)
     hostLabel = ttk.Label(master=hostEntryFrame, text="Host:", font="Chiller 18 bold")
-    hostEntry = ttk.Entry(master=hostEntryFrame)
+    hostVar = ttk.StringVar()
+    hostEntry = ttk.Entry(master=hostEntryFrame, textvariable=hostVar)
     hostEntryFrame.pack(pady=20)
     hostLabel.pack(side="left", padx=10)
     hostEntry.pack(side="left", padx=10)
