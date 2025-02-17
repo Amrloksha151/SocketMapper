@@ -1,10 +1,9 @@
 import socket
 
 class Scanning:
-    def __init__(self, protocol, host, port, start, stop):
+    def __init__(self, protocol, host, start, stop):
         self.protocol = protocol
         self.host = host
-        self.port = port
         self.start = start
         self.stop = stop
     
@@ -13,9 +12,9 @@ class Scanning:
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
             client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        for port in range():
+        for port in range(start=self.start, stop=self.stop):
             try:
-                client.connect((self.host, self.port))
+                client.connect((self.host, port))
             except Exception:
                 yield 'Closed'
             else:

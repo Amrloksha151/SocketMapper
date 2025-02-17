@@ -72,9 +72,11 @@ def Scanning_GUI():
     # Ports Range
     rangeFrame = ttk.Frame(master=window)
     rangeLabel = ttk.Label(master=rangeFrame, text="Range:", font="Chiller 18 bold")
-    startEntry = ttk.Entry(master=rangeFrame, width=5)  # add a default value
+    startVar = ttk.IntVar(value=0)
+    startEntry = ttk.Entry(master=rangeFrame, width=5, textvariable=startVar)  # add a default value
     colon = ttk.Label(master=rangeFrame, text=":", font="Chiller 24 bold")
-    stopEntry = ttk.Entry(master=rangeFrame, width=5)  # add a default value
+    stopVar = ttk.IntVar(value=25)
+    stopEntry = ttk.Entry(master=rangeFrame, width=5, textvariable=stopVar)  # add a default value
     rangeFrame.pack(pady=20)
     rangeLabel.pack(side="left", padx=10)
     startEntry.pack(side="left", padx=10)
