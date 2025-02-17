@@ -114,12 +114,14 @@ def Scanning_GUI():
     featuresFrame = ttk.Frame(master=window)
     featuresFrame.pack()
     # Multithreading
+    threadingVar = ttk.BooleanVar()
     threadingToggle = ttk.Checkbutton(
-        master=featuresFrame, text="Multithreading", style="round-toggle"
+        master=featuresFrame, text="Multithreading", style="round-toggle", variable=threadingVar, onvalue=True, offvalue=False
     )
     threadingToggle.pack(side="left", padx=10)
     # CSV... CSVT short for Comma Seprated Values Toggle button
-    csvT = ttk.Checkbutton(master=featuresFrame, text="CSV", style="round-toggle")
+    csVar = ttk.BooleanVar()
+    csvT = ttk.Checkbutton(master=featuresFrame, text="CSV", style="round-toggle", variable=csVar, onvalue=True, offvalue=False)
     csvT.pack(side="left", padx=10)
     # TXT
     txt = ttk.Checkbutton(master=featuresFrame, text="TXT", style="round-toggle")
