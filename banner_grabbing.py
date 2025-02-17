@@ -1,3 +1,5 @@
 import socket
 
-client = socket.socket(...)
+class Grabbing():
+    def __init__(self,):
+        ...
