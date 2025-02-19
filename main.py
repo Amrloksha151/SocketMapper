@@ -1,6 +1,8 @@
 import tkinter as tk  # if not used delete it while finalizing
 import ttkbootstrap as ttk
 from port_scanning import Scanning
+
+
 # hello world
 def main():
     global window
@@ -73,10 +75,14 @@ def Scanning_GUI():
     rangeFrame = ttk.Frame(master=window)
     rangeLabel = ttk.Label(master=rangeFrame, text="Range:", font="Chiller 18 bold")
     startVar = ttk.IntVar(value=0)
-    startEntry = ttk.Entry(master=rangeFrame, width=5, textvariable=startVar)  # add a default value
+    startEntry = ttk.Entry(
+        master=rangeFrame, width=5, textvariable=startVar
+    )  # add a default value
     colon = ttk.Label(master=rangeFrame, text=":", font="Chiller 24 bold")
     stopVar = ttk.IntVar(value=25)
-    stopEntry = ttk.Entry(master=rangeFrame, width=5, textvariable=stopVar)  # add a default value
+    stopEntry = ttk.Entry(
+        master=rangeFrame, width=5, textvariable=stopVar
+    )  # add a default value
     rangeFrame.pack(pady=20)
     rangeLabel.pack(side="left", padx=10)
     startEntry.pack(side="left", padx=10)
@@ -116,15 +122,35 @@ def Scanning_GUI():
     # Multithreading
     threadingVar = ttk.BooleanVar()
     threadingToggle = ttk.Checkbutton(
-        master=featuresFrame, text="Multithreading", style="round-toggle", variable=threadingVar, onvalue=True, offvalue=False
+        master=featuresFrame,
+        text="Multithreading",
+        style="round-toggle",
+        variable=threadingVar,
+        onvalue=True,
+        offvalue=False,
     )
     threadingToggle.pack(side="left", padx=10)
     # CSV... CSVT short for Comma Seprated Values Toggle button
     csVar = ttk.BooleanVar()
-    csvT = ttk.Checkbutton(master=featuresFrame, text="CSV", style="round-toggle", variable=csVar, onvalue=True, offvalue=False)
+    csvT = ttk.Checkbutton(
+        master=featuresFrame,
+        text="CSV",
+        style="round-toggle",
+        variable=csVar,
+        onvalue=True,
+        offvalue=False,
+    )
     csvT.pack(side="left", padx=10)
     # TXT
-    txt = ttk.Checkbutton(master=featuresFrame, text="TXT", style="round-toggle")
+    txtVar = ttk.BooleanVar()
+    txt = ttk.Checkbutton(
+        master=featuresFrame,
+        text="TXT",
+        style="round-toggle",
+        variable=txtVar,
+        onvalue=True,
+        offvalue=False,
+    )
     txt.pack(side="left", padx=10)
 
     # submit button
