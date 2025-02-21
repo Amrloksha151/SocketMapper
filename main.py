@@ -76,13 +76,13 @@ def Scanning_GUI():
     rangeFrame = ttk.Frame(master=window)
     rangeLabel = ttk.Label(master=rangeFrame, text="Range:", font="Chiller 18 bold")
     global startVar
-    startVar = ttk.IntVar(value=0)
+    startVar = ttk.StringVar(value=0)
     startEntry = ttk.Entry(
         master=rangeFrame, width=5, textvariable=startVar
     )  # add a default value
     colon = ttk.Label(master=rangeFrame, text=":", font="Chiller 24 bold")
     global stopVar
-    stopVar = ttk.IntVar(value=25)
+    stopVar = ttk.StringVar(value=25)
     stopEntry = ttk.Entry(
         master=rangeFrame, width=5, textvariable=stopVar
     )  # add a default value
@@ -165,9 +165,9 @@ def Scanning_GUI():
     submitBtn.pack(pady=40)
 
 def scan():
-    scanner = Scanning(host=hostVar.get(), protocol=protocolVariable.get(), start=startVar.get(), stop=stopVar.get(), txt=txtVar.get(), csv=csVar.get())
+    scanner = Scanning(host=hostVar.get(), protocol=protocolVariable.get(), start=int(startVar.get()), stop=int(stopVar.get()), txt=txtVar.get(), csv=csVar.get())
     scanner.scan()
-    print(scanner.results)
+    print(scanner.results) # fix not responding error
 
 def Grapping_GUI():
     clear(centralImage, btnFrame)

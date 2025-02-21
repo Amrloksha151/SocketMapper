@@ -17,7 +17,7 @@ class Scanning:
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
             client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        for port in range(start=self.start, stop=self.stop):
+        for port in range(self.start, self.stop):
             try:
                 client.connect((self.host, port))
             except Exception:
