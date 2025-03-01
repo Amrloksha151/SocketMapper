@@ -15,7 +15,7 @@ class Scanning:
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
             client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        for port in range(self.start, self.stop):
+        for port in range(self.start, self.stop + 1):
             try:
                 client.connect((self.host, port))
             except Exception:
@@ -26,17 +26,26 @@ class Scanning:
     def save(self):
         if self.txt:
             with open('%s.txt' % self.host, "w") as file:
-                file.write('Port ::: State')
+                file.write('Port ::: State\n')
+                port = self.start
                 for result in self.results:
-                    file.write('%s ::: %s\n' % (self.results.index(result) + self.start, result))
-        elif self.csv:
+                    file.write('%s ::: %s\n' % (port, result))
+                    port += 1
+
+        if self.csv:
             with open('%s.csv' % self.host, "w") as file:
-                file.write('Port,State')
+                file.write('Port,State\n')
+                port = self.start
                 for result in self.results:
-                    file.write('%s,%s\n' % (self.results.index(result) + self.start, result))
-        else:
+                    file.write('%s,%s\n' % (port, result))
+                    port += 1
+                    
+        if not (self.csv or self.txt):
+            port = self.start
             for result in self.results:
-                    print('%s ::: %s' % (self.results.index(result) + self.start, result))
+                    print('%s ::: %s' % (port, result))
+                    port += 1
+                    
 
     def multithreadedScan(self): ...
 
