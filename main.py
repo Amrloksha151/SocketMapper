@@ -167,7 +167,8 @@ def Scanning_GUI():
 def scan():
     scanner = Scanning(host=hostVar.get(), protocol=protocolVariable.get(), start=int(startVar.get()), stop=int(stopVar.get()), txt=txtVar.get(), csv=csVar.get())
     scanner.scan()
-    print(scanner.results) # fix not responding error
+    scanner.save()
+    # fix not responding error
 
 def Grapping_GUI():
     clear(centralImage, btnFrame)

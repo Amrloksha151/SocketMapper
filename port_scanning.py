@@ -1,6 +1,4 @@
 import socket
-import csv
-
 
 class Scanning:
     def __init__(self, protocol, host, start, stop, txt, csv):
@@ -25,7 +23,20 @@ class Scanning:
             else:
                 self.results.append("Opened")
 
-    def save(self): ...
+    def save(self):
+        if self.txt:
+            with open('%s.txt' % self.host, "w") as file:
+                file.write('Port ::: State')
+                for result in self.results:
+                    file.write('%s ::: %s' % (result.index() + self.start, result))
+        elif self.csv:
+            with open('%s.csv' % self.host, "w") as file:
+                file.write('Port,State')
+                for result in self.results:
+                    file.write('%s,%s' % (result.index() + self.start, result))
+        else:
+            for result in self.results:
+                    print('%s ::: %s' % (result.index() + self.start, result))
 
     def multithreadedScan(self): ...
 
