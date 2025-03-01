@@ -28,12 +28,12 @@ class Scanning:
             with open('%s.txt' % self.host, "w") as file:
                 file.write('Port ::: State')
                 for result in self.results:
-                    file.write('%s ::: %s' % (self.results.index(result) + self.start, result))
+                    file.write('%s ::: %s\n' % (self.results.index(result) + self.start, result))
         elif self.csv:
             with open('%s.csv' % self.host, "w") as file:
                 file.write('Port,State')
                 for result in self.results:
-                    file.write('%s,%s' % (self.results.index(result) + self.start, result))
+                    file.write('%s,%s\n' % (self.results.index(result) + self.start, result))
         else:
             for result in self.results:
                     print('%s ::: %s' % (self.results.index(result) + self.start, result))
