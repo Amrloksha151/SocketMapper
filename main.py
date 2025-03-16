@@ -41,7 +41,7 @@ def main():
         master=btnFrame,
         text="Banner Grapping",
         style="danger-outline",
-        command=Grapping_GUI,
+        command=Grabbing_GUI,
     )
     btnFrame.pack(pady=20)
     btnBannerGrapping.pack(side="left", padx=40)
@@ -170,7 +170,7 @@ def scan():
     scanner.save()
     # fix not responding error
 
-def Grapping_GUI():
+def Grabbing_GUI():
     clear(centralImage, btnFrame)
     title.configure(text="Banner Grapping")
 
