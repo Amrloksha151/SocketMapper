@@ -20,6 +20,7 @@ class Grabbing:
         return data.decode()
 
     def save(self):
-        ...
+        with open("banner.txt", "w") as file:
+            file.write(self.grab())
 
     
