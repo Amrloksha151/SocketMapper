@@ -1,6 +1,7 @@
 import tkinter as tk  # if not used delete it while finalizing
 import ttkbootstrap as ttk
 from port_scanning import Scanning
+import time
 
 
 # hello world
@@ -173,6 +174,24 @@ def scan():
 def Grabbing_GUI():
     clear(centralImage, btnFrame)
     title.configure(text="Banner Grapping")
+    hostFrame = ttk.Frame(master=window)
+    hostLabel = ttk.Label(master=hostFrame, text="Host:", font="Chiller 18 bold")
+    if not "hostVar" in globals():
+        global hostVar
+        hostVar = ttk.StringVar()
+    hostEntry = ttk.Entry(master=hostFrame, textvariable=hostVar)
+    hostFrame.pack(pady=20)
+    hostLabel.pack(side="left", padx=10)
+    hostEntry.pack(side="left", padx=10)
+    
+    portFrame = ttk.Frame(master=window)
+    portLabel = ttk.Label(master=portFrame, text="Port:", font="Chiller 18 bold")
+    global portVar
+    portVar = ttk.StringVar(value=80)
+    portEntry = ttk.Entry(master=portFrame, textvariable=portVar)
+    portFrame.pack(pady=20)
+    portLabel.pack(side="left", padx=10)
+    portEntry.pack(side="left", padx=10)
 
 
 if __name__ == "__main__":
