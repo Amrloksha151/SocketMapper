@@ -17,6 +17,7 @@ class Grabbing:
             client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             client.sendto(request.encode(), (self.target, self.port))
             data = client.recvfrom(4096)
+        return data.decode()
 
     def save(self):
         ...
