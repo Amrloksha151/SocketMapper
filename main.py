@@ -2,6 +2,7 @@ import tkinter as tk  # if not used delete it while finalizing
 import ttkbootstrap as ttk
 from port_scanning import Scanning
 import time
+from banner_grabbing import Grabbing
 
 
 # hello world
@@ -37,12 +38,14 @@ def main():
         text="Port Scanning",
         style="success-outline",
         command=Scanning_GUI,
+        cursor="hand2"
     )
     btnBannerGrapping = ttk.Button(
         master=btnFrame,
         text="Banner Grapping",
         style="danger-outline",
         command=Grabbing_GUI,
+        cursor="hand2"
     )
     btnFrame.pack(pady=20)
     btnBannerGrapping.pack(side="left", padx=40)
@@ -162,7 +165,7 @@ def Scanning_GUI():
     txt.pack(side="left", padx=10)
 
     # submit button
-    submitBtn = ttk.Button(master=window, text="Submit", style="outline", command=scan)
+    submitBtn = ttk.Button(master=window, text="Scan", style="outline", command=scan, cursor="hand2")
     submitBtn.pack(pady=40)
 
 
@@ -201,6 +204,57 @@ def Grabbing_GUI():
     portFrame.pack(pady=20)
     portLabel.pack(side="left", padx=10)
     portEntry.pack(side="left", padx=10)
+
+    # TCP or UDP
+    protocolFrame = ttk.Frame(master=window)
+    if not "protocolVariable" in globals():
+        global protocolVariable
+        protocolVariable = ttk.StringVar(value="TCP")  # TCP is the default value
+    protocolLabel = ttk.Label(
+        master=protocolFrame, text="Protocol:", font="Chiller 18 bold"
+    )
+    TCP_RadioButton = ttk.Radiobutton(
+        master=protocolFrame,
+        text="TCP",
+        variable=protocolVariable,
+        value="TCP",
+        style="Outline.Toolbutton",
+    )
+    UDP_RadioButton = ttk.Radiobutton(
+        master=protocolFrame,
+        text="UDP",
+        value="UDP",
+        variable=protocolVariable,
+        style="Outline.Toolbutton",
+    )
+    protocolFrame.pack(pady=20)
+    protocolLabel.pack(side="left", padx=10)
+    UDP_RadioButton.pack(side="left", padx=10)
+    TCP_RadioButton.pack(side="left", padx=10)
+
+    if not "txtVar" in globals():
+        global txtVar
+        txtVar = ttk.BooleanVar()
+    txt = ttk.Checkbutton(
+        master=window,
+        text="TXT",
+        style="round-toggle",
+        variable=txtVar,
+        onvalue=True,
+        offvalue=False,
+    )
+    txt.pack()
+
+    # submission button
+    submit = ttk.Button(window, text="Grab", style="outline", command=grab, width=20, cursor="hand2")
+    submit.pack(side="bottom", pady=40)
+
+def grab():
+    grabber = Grabbing(hostVar.get(), int(portVar.get()), protocolVariable.get())
+    banner = grabber.grab()
+    if txtVar.get():
+        grabber.save()
+    print(banner) # make it in the gui later
 
 
 if __name__ == "__main__":
