@@ -165,11 +165,20 @@ def Scanning_GUI():
     submitBtn = ttk.Button(master=window, text="Submit", style="outline", command=scan)
     submitBtn.pack(pady=40)
 
+
 def scan():
-    scanner = Scanning(host=hostVar.get(), protocol=protocolVariable.get(), start=int(startVar.get()), stop=int(stopVar.get()), txt=txtVar.get(), csv=csVar.get())
+    scanner = Scanning(
+        host=hostVar.get(),
+        protocol=protocolVariable.get(),
+        start=int(startVar.get()),
+        stop=int(stopVar.get()),
+        txt=txtVar.get(),
+        csv=csVar.get(),
+    )
     scanner.scan()
     scanner.save()
     # fix not responding error
+
 
 def Grabbing_GUI():
     clear(centralImage, btnFrame)
@@ -183,7 +192,7 @@ def Grabbing_GUI():
     hostFrame.pack(pady=20)
     hostLabel.pack(side="left", padx=10)
     hostEntry.pack(side="left", padx=10)
-    
+
     portFrame = ttk.Frame(master=window)
     portLabel = ttk.Label(master=portFrame, text="Port:", font="Chiller 18 bold")
     global portVar

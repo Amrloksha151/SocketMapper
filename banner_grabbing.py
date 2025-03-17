@@ -1,5 +1,6 @@
 import socket
 
+
 class Grabbing:
     def __init__(self, target, port, protocol):
         self.target = target
@@ -7,7 +8,10 @@ class Grabbing:
         self.protocol = protocol
 
     def grab(self):
-        request = "GET / HTTP/1.1\r\nHost: %s\r\nUser-Agent: Mozilla/5.0\r\n\r\n" % self.target
+        request = (
+            "GET / HTTP/1.1\r\nHost: %s\r\nUser-Agent: Mozilla/5.0\r\n\r\n"
+            % self.target
+        )
         if self.protocol == "TCP":
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             client.connect((self.target, self.port))
@@ -22,5 +26,3 @@ class Grabbing:
     def save(self):
         with open("banner.txt", "w") as file:
             file.write(self.grab())
-
-    
