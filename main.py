@@ -64,7 +64,7 @@ def clear(*args):
 
 def Scanning_GUI():
     clear(centralImage, btnFrame)
-    title.configure(text="Port Scanning")
+    title.configure(text="Port Scanner")
 
     # Host address or domain input box
     hostEntryFrame = ttk.Frame(master=window)
@@ -185,7 +185,7 @@ def scan():
 
 def Grabbing_GUI():
     clear(centralImage, btnFrame)
-    title.configure(text="Banner Grapping")
+    title.configure(text="Banner Grabber")
     hostFrame = ttk.Frame(master=window)
     hostLabel = ttk.Label(master=hostFrame, text="Host:", font="Chiller 18 bold")
     if not "hostVar" in globals():
