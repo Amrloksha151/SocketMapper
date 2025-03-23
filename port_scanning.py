@@ -16,6 +16,7 @@ class Scanning:
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
             client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        client.settimeout(0.3)
         for port in range(self.start, self.stop + 1):
             try:
                 client.connect((self.host, port))
