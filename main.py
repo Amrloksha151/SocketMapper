@@ -3,6 +3,7 @@ import ttkbootstrap as ttk
 from port_scanning import Scanning
 import time
 from banner_grabbing import Grabbing
+import threading
 
 
 # hello world
@@ -54,9 +55,12 @@ def main():
     window.mainloop()
 
 
-def clear(*args):
+def clear(*args, hide=False):
     for element in args:
-        element.destroy()
+        if hide:
+            element.pack_forget()
+        else:
+            element.destroy()
 
 
 # Try to add restoring feature in the future in order to add a back button
@@ -67,9 +71,9 @@ def Scanning_GUI():
     title.configure(text="Port Scanner")
 
     # Host address or domain input box
+    global hostVar, hostEntryFrame
     hostEntryFrame = ttk.Frame(master=window)
     hostLabel = ttk.Label(master=hostEntryFrame, text="Host:", font="Chiller 18 bold")
-    global hostVar
     hostVar = ttk.StringVar()
     hostEntry = ttk.Entry(master=hostEntryFrame, textvariable=hostVar)
     hostEntryFrame.pack(pady=20)
@@ -77,15 +81,14 @@ def Scanning_GUI():
     hostEntry.pack(side="left", padx=10)
 
     # Ports Range
+    global rangeFrame, startVar, stopVar
     rangeFrame = ttk.Frame(master=window)
     rangeLabel = ttk.Label(master=rangeFrame, text="Range:", font="Chiller 18 bold")
-    global startVar
     startVar = ttk.StringVar(value=0)
     startEntry = ttk.Entry(
         master=rangeFrame, width=5, textvariable=startVar
     )  # add a default value
     colon = ttk.Label(master=rangeFrame, text=":", font="Chiller 24 bold")
-    global stopVar
     stopVar = ttk.StringVar(value=25)
     stopEntry = ttk.Entry(
         master=rangeFrame, width=5, textvariable=stopVar
@@ -97,8 +100,8 @@ def Scanning_GUI():
     stopEntry.pack(side="left", padx=10)
 
     # TCP or UDP
+    global protocolVariable, protocolFrame
     protocolFrame = ttk.Frame(master=window)
-    global protocolVariable
     protocolVariable = ttk.StringVar(value="TCP")  # TCP is the default value
     protocolLabel = ttk.Label(
         master=protocolFrame, text="Protocol:", font="Chiller 18 bold"
@@ -123,6 +126,7 @@ def Scanning_GUI():
     TCP_RadioButton.pack(side="left", padx=10)
 
     # Features
+    global featuresFrame, featuresLabel
     featuresLabel = ttk.Label(master=window, text="Features", font="Chiller 24 bold")
     featuresLabel.pack(pady=20)
     featuresFrame = ttk.Frame(master=window)
@@ -165,9 +169,13 @@ def Scanning_GUI():
     txt.pack(side="left", padx=10)
 
     # submit button
+    global submitBtn
     submitBtn = ttk.Button(master=window, text="Scan", style="outline", command=scan, cursor="hand2")
     submitBtn.pack(pady=40)
 
+def scan_packing():
+    # here you should add the packings in ordered form
+    ...
 
 def scan():
     scanner = Scanning(
@@ -178,8 +186,10 @@ def scan():
         txt=txtVar.get(),
         csv=csVar.get(),
     )
-    scanner.scan()
+    clear(hostEntryFrame, rangeFrame, protocolFrame, featuresLabel, featuresFrame, submitBtn, hide=True)
+    scanner.start_connection(window)
     scanner.save()
+    scan_packing()
     # fix not responding error
 
 

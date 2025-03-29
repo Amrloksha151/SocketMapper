@@ -1,5 +1,6 @@
 import socket
-
+import threading
+import ttkbootstrap as ttk
 
 class Scanning:
     def __init__(self, protocol, host, start, stop, txt, csv):
@@ -16,37 +17,32 @@ class Scanning:
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
             client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        client.settimeout(0.3)
+        #client.settimeout(0.3)
         for port in range(self.start, self.stop + 1):
-            try:
-                client.connect((self.host, port))
-            except Exception:
-                self.results.append("Closed")
-            else:
-                self.results.append("Opened")
+            if not bool(client.connect_ex((self.host, port))):
+                self.results.append("%s is open" % port)
+        client.close()
+    
+    def start_connection(self, window):
+        threading.Thread(target=self.scan(), daemon=True).start()
 
     def save(self):
         if self.txt:
             with open("%s.txt" % self.host, "w") as file:
-                file.write("Port ::: State\n")
-                port = self.start
+                file.write("$Open Ports$\n")
                 for result in self.results:
-                    file.write("%s ::: %s\n" % (port, result))
-                    port += 1
-
+                    file.write(result)
         if self.csv:
             with open("%s.csv" % self.host, "w") as file:
                 file.write("Port,State\n")
                 port = self.start
                 for result in self.results:
-                    file.write("%s,%s\n" % (port, result))
+                    file.write("%s,Open\n" % port)
                     port += 1
 
         if not (self.csv or self.txt):
-            port = self.start
             for result in self.results:
-                print("%s ::: %s" % (port, result))
-                port += 1
+                print(result)
 
     def multithreadedScan(self): ...
 
