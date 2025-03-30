@@ -76,7 +76,6 @@ def Scanning_GUI():
     hostLabel = ttk.Label(master=hostEntryFrame, text="Host:", font="Chiller 18 bold")
     hostVar = ttk.StringVar()
     hostEntry = ttk.Entry(master=hostEntryFrame, textvariable=hostVar)
-    hostEntryFrame.pack(pady=20)
     hostLabel.pack(side="left", padx=10)
     hostEntry.pack(side="left", padx=10)
 
@@ -93,7 +92,6 @@ def Scanning_GUI():
     stopEntry = ttk.Entry(
         master=rangeFrame, width=5, textvariable=stopVar
     )  # add a default value
-    rangeFrame.pack(pady=20)
     rangeLabel.pack(side="left", padx=10)
     startEntry.pack(side="left", padx=10)
     colon.pack(side="left", padx=5)
@@ -120,7 +118,6 @@ def Scanning_GUI():
         variable=protocolVariable,
         style="Outline.Toolbutton",
     )
-    protocolFrame.pack(pady=20)
     protocolLabel.pack(side="left", padx=10)
     UDP_RadioButton.pack(side="left", padx=10)
     TCP_RadioButton.pack(side="left", padx=10)
@@ -128,9 +125,7 @@ def Scanning_GUI():
     # Features
     global featuresFrame, featuresLabel
     featuresLabel = ttk.Label(master=window, text="Features", font="Chiller 24 bold")
-    featuresLabel.pack(pady=20)
     featuresFrame = ttk.Frame(master=window)
-    featuresFrame.pack()
     # Multithreading
     global threadingVar
     threadingVar = ttk.BooleanVar()
@@ -171,11 +166,17 @@ def Scanning_GUI():
     # submit button
     global submitBtn
     submitBtn = ttk.Button(master=window, text="Scan", style="outline", command=scan, cursor="hand2")
-    submitBtn.pack(pady=40)
+    scan_packing()
+    # pack the elements in the window
 
 def scan_packing():
     # here you should add the packings in ordered form
-    ...
+    hostEntryFrame.pack(pady=20)
+    rangeFrame.pack(pady=20)
+    protocolFrame.pack(pady=20)
+    featuresLabel.pack(pady=20)
+    featuresFrame.pack()
+    submitBtn.pack(pady=40)
 
 def scan():
     scanner = Scanning(
@@ -187,8 +188,7 @@ def scan():
         csv=csVar.get(),
     )
     clear(hostEntryFrame, rangeFrame, protocolFrame, featuresLabel, featuresFrame, submitBtn, hide=True)
-    scanner.start_connection(window)
-    scanner.save()
+    window.after(1000, lambda: scanner.start_connection(window))
     scan_packing()
     # fix not responding error
 
