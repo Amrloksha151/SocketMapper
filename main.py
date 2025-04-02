@@ -39,14 +39,14 @@ def main():
         text="Port Scanning",
         style="success-outline",
         command=Scanning_GUI,
-        cursor="hand2"
+        cursor="hand2",
     )
     btnBannerGrapping = ttk.Button(
         master=btnFrame,
         text="Banner Grapping",
         style="danger-outline",
         command=Grabbing_GUI,
-        cursor="hand2"
+        cursor="hand2",
     )
     btnFrame.pack(pady=20)
     btnBannerGrapping.pack(side="left", padx=40)
@@ -165,9 +165,12 @@ def Scanning_GUI():
 
     # submit button
     global submitBtn
-    submitBtn = ttk.Button(master=window, text="Scan", style="outline", command=scan, cursor="hand2")
+    submitBtn = ttk.Button(
+        master=window, text="Scan", style="outline", command=scan, cursor="hand2"
+    )
     scan_packing()
     # pack the elements in the window
+
 
 def scan_packing():
     # here you should add the packings in ordered form
@@ -178,6 +181,7 @@ def scan_packing():
     featuresFrame.pack()
     submitBtn.pack(pady=40)
 
+
 def scan():
     scanner = Scanning(
         host=hostVar.get(),
@@ -187,7 +191,15 @@ def scan():
         txt=txtVar.get(),
         csv=csVar.get(),
     )
-    clear(hostEntryFrame, rangeFrame, protocolFrame, featuresLabel, featuresFrame, submitBtn, hide=True)
+    clear(
+        hostEntryFrame,
+        rangeFrame,
+        protocolFrame,
+        featuresLabel,
+        featuresFrame,
+        submitBtn,
+        hide=True,
+    )
     window.after(1000, lambda: scanner.start_connection(window))
     scan_packing()
     # fix not responding error
@@ -256,15 +268,22 @@ def Grabbing_GUI():
     txt.pack()
 
     # submission button
-    submit = ttk.Button(window, text="Grab", style="outline", command=grab, width=20, cursor="hand2")
+    submit = ttk.Button(
+        window, text="Grab", style="outline", command=grab, width=20, cursor="hand2"
+    )
     submit.pack(side="bottom", pady=40)
+
 
 def grab():
     grabber = Grabbing(hostVar.get(), int(portVar.get()), protocolVariable.get())
     if txtVar.get():
-        window.after(1000, lambda: threading.Thread(target=grabber.save(), daemon=True).start())
+        window.after(
+            1000, lambda: threading.Thread(target=grabber.save(), daemon=True).start()
+        )
     else:
-        window.after(1000, lambda: threading.Thread(target=grabber.grab(), daemon=True).start()) # make it in the gui later
+        window.after(
+            1000, lambda: threading.Thread(target=grabber.grab(), daemon=True).start()
+        )  # make it in the gui later
 
 
 if __name__ == "__main__":
