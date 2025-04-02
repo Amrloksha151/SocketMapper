@@ -261,10 +261,10 @@ def Grabbing_GUI():
 
 def grab():
     grabber = Grabbing(hostVar.get(), int(portVar.get()), protocolVariable.get())
-    banner = grabber.grab()
     if txtVar.get():
-        grabber.save()
-    print(banner) # make it in the gui later
+        window.after(1000, lambda: threading.Thread(target=grabber.save(), daemon=True).start())
+    else:
+        window.after(1000, lambda: threading.Thread(target=grabber.grab(), daemon=True).start()) # make it in the gui later
 
 
 if __name__ == "__main__":
