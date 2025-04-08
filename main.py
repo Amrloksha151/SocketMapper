@@ -200,7 +200,7 @@ def scan():
         submitBtn,
         hide=True,
     )
-    window.after(1000, lambda: scanner.start_connection(window))
+    window.after(1000, lambda: scanner.scan())
     scan_packing()
     # fix not responding error
 

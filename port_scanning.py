@@ -22,41 +22,9 @@ class Scanning:
         for port in range(self.start, self.stop + 1):
             if not bool(client.connect_ex((self.host, port))):
                 self.results.append("%s is open" % port)
-                self.window.after(
-                    0,
-                    lambda p=port: self.connectionLabel.configure(
-                        text=f"Port {p} is open", foreground="green"
-                    ),
-                )
-            else:
-                self.window.after(
-                    0,
-                    lambda p=port: self.connectionLabel.configure(
-                        text=f"Port {p} is closed", foreground="red"
-                    ),
-                )
-        self.window.after(
-            0,
-            lambda: self.connectionLabel.configure(
-                text="Scan completed!", foreground="black"
-            ),
-        )
         self.window.after(3000, lambda: self.connectionLabel.destroy())
         client.close()
         self.save()
-
-    def start_connection(self, window):
-        self.window = window
-        self.connectionLabel = ttk.Label(
-            master=window,
-            text="Scanning %s" % self.host,
-            font="Chiller 18 bold",
-            foreground="blue",
-        )
-        self.connectionLabel.pack(pady=40)
-        window.after(
-            1000, lambda: threading.Thread(target=self.scan(), daemon=True).start()
-        )
 
     def save(self):
         if self.txt:
