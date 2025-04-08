@@ -43,7 +43,5 @@ class Scanning:
             for result in self.results:
                 print(result)
 
-    def multithreadedScan(self): ...
-
     def __str__(self):
         return "Port Scanning --> use scan method for normal scanning and multithreaded for faster scanning"

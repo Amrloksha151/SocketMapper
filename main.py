@@ -126,18 +126,6 @@ def Scanning_GUI():
     global featuresFrame, featuresLabel
     featuresLabel = ttk.Label(master=window, text="Features", font="Chiller 24 bold")
     featuresFrame = ttk.Frame(master=window)
-    # Multithreading
-    global threadingVar
-    threadingVar = ttk.BooleanVar()
-    threadingToggle = ttk.Checkbutton(
-        master=featuresFrame,
-        text="Multithreading",
-        style="round-toggle",
-        variable=threadingVar,
-        onvalue=True,
-        offvalue=False,
-    )
-    threadingToggle.pack(side="left", padx=10)
     # CSV... CSVT short for Comma Seprated Values Toggle button
     global csVar
     csVar = ttk.BooleanVar()
@@ -166,7 +154,12 @@ def Scanning_GUI():
     # submit button
     global submitBtn
     submitBtn = ttk.Button(
-        master=window, text="Scan", style="outline", command=scan, cursor="hand2"
+        master=window,
+        text="Scan",
+        style="outline",
+        command=scan,
+        cursor="hand2",
+        width=20,
     )
     scan_packing()
     # pack the elements in the window
