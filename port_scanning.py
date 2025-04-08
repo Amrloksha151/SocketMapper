@@ -22,7 +22,6 @@ class Scanning:
         for port in range(self.start, self.stop + 1):
             if not bool(client.connect_ex((self.host, port))):
                 self.results.append("%s is open" % port)
-        self.window.after(3000, lambda: self.connectionLabel.destroy())
         client.close()
         self.save()
 
