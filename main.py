@@ -275,7 +275,7 @@ def grab():
         )
     else:
         window.after(
-            1000, lambda: threading.Thread(target=grabber.grab(), daemon=True).start()
+            1000, lambda: threading.Thread(target=print(grabber.grab()), daemon=True).start()
         )  # make it in the gui later
 
 
